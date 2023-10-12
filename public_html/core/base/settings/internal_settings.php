@@ -66,21 +66,21 @@ const ADMIN_CSS_JS = [
 	]
 ];
 
-
-//  константа для хранения путей css- и js-файлов пользовательской части сайта
+//  константа для хранения путей css- и js-файлов пользовательской части сайта ( в замен в header.php подключить <?php 
+// $this->getStyles? ,в footer.php подключить <?php $this->getScripts? )
 const USER_CSS_JS = [
 	'styles' => [
-		'https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&display=swap&subset=cyrillic',
+		/* 'https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&display=swap&subset=cyrillic',
 		'https://fonts.googleapis.com/css?family=Didact+Gothic&display=swap&subset=cyrillic',
 		'https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css',
 		'https://unpkg.com/swiper/swiper-bundle.min.css',
 		'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css',
-		'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css',
-		'assets/css/animate.css',
-		'assets/css/style.css'
+		'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css', */
+		'assets/css/style.css',
+
 	],
 	'scripts' => [
-		'https://code.jquery.com/jquery-3.4.1.min.js',
+		/* 		'https://code.jquery.com/jquery-3.4.1.min.js',
 		'https://unpkg.com/swiper/swiper-bundle.min.js',
 		'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js',
 		'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js',
@@ -96,8 +96,9 @@ const USER_CSS_JS = [
 		'assets/js/animation.gsap.min.js',
 		'assets/js/bodyscrolllock/bodyScrollLock.min.js',
 		'assets/js/app.js',
-		'assets/js/script.js',
-		'assets/js/showMessage.js',
+		'assets/js/script.js', */
+		'assets/js/vendors.min.js',
+		'assets/js/app.js',
 	]
 ];
 

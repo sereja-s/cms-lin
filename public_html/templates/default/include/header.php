@@ -5,11 +5,12 @@
 	<title>Funiro</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/style.min.css">
+	<!-- <link rel="stylesheet" href="css/style.min.css"> -->
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<?php $this->getStyles() ?>
 </head>
 
 <body>
@@ -19,29 +20,29 @@
 				<div class="header__container _container">
 					<div class="header__body">
 						<div class="header__main">
-							<a href="" class="header__logo">Funiro.</a>
+							<a href="" class="header__logo">ТМ"АДАЦ"</a>
 							<div class="header__menu menu">
 								<nav class="menu__body">
 									<ul data-spollers="768,max" class="menu__list">
 										<li class="menu__item">
-											<a href="" class="menu__link">Products</a>
+											<a href="" class="menu__link">Продукция</a>
 											<button data-spoller type="button" class="menu__arrow _icon-arrow-down"></button>
 											<ul class="menu__sub-list">
 												<li class="menu__sub-item">
-													<a href="" class="menu__sub-link">Product #1</a>
+													<a href="" class="menu__sub-link">Аджика</a>
 												</li>
 												<li class="menu__sub-item">
-													<a href="" class="menu__sub-link">Product #2</a>
+													<a href="" class="menu__sub-link">Смеси специй</a>
 												</li>
 												<li class="menu__sub-item">
-													<a href="" class="menu__sub-link">Product #3</a>
+													<a href="" class="menu__sub-link">Натуральные смеси и специи</a>
 												</li>
-												<li class="menu__sub-item">
+												<!-- <li class="menu__sub-item">
 													<a href="" class="menu__sub-link">Product #4</a>
-												</li>
+												</li> -->
 											</ul>
 										</li>
-										<li class="menu__item">
+										<!-- <li class="menu__item">
 											<a href="" class="menu__link">Rooms</a>
 											<button data-spoller type="button" class="menu__arrow _icon-arrow-down"></button>
 											<ul class="menu__sub-list">
@@ -58,9 +59,13 @@
 													<a href="" class="menu__sub-link">Room #4</a>
 												</li>
 											</ul>
+										</li> -->
+										<li class="menu__item">
+											<a href="tel:+79493302709" class="contacts-footer__item _icon-phone">+7 949 330 27 09</a>
 										</li>
 										<li class="menu__item">
-											<a href="" class="menu__link">Inspirations</a>
+											<a href="" target="_blank" class="contacts-footer__item">
+												linkos.don@yandex.ru</a>
 										</li>
 									</ul>
 								</nav>
@@ -75,7 +80,7 @@
 								</form>
 							</div>
 						</div>
-						<div class="header__actions actions-header">
+						<!-- <div class="header__actions actions-header">
 							<a href="" class="actions-header__item actions-header__item_favorites _icon-favorite"></a>
 							<div class="actions-header__item cart-header">
 								<a href="" class="cart-header__icon _icon-cart"></a>
@@ -88,7 +93,7 @@
 									<source srcset="img/avatar.webp" type="image/webp"><img src="img/avatar.jpg" alt="Avatar">
 								</picture>
 							</a>
-						</div>
+						</div> -->
 						<button type="button" class="icon-menu">
 							<span></span>
 							<span></span>

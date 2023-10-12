@@ -9,7 +9,7 @@
 				<div class="footer__contacts contacts-footer">
 					<a href="" class="contacts-footer__item _icon-location">Sawojajar Malang, Indonesia</a>
 					<a href="tel:+62894563455" class="contacts-footer__item _icon-phone">+6289 456 3455</a>
-					<a href="https://www.funiro.com" target="_blank" class="contacts-footer__item">www.funiro.com</a>
+					<a href="" target="_blank" class="contacts-footer__item">www.funiro.com</a>
 				</div>
 			</div>
 			<div data-spollers="768,max" class="footer__menu menu-footer">
@@ -77,6 +77,9 @@
 
 <!-- Swiper -->
 <!-- <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> -->
-<script src="js/vendors.min.js"></script>
-<script src="js/app.min.js"></script>
+<!-- <script src="js/vendors.min.js"></script>
+<script src="js/app.min.js"></script> -->
+
+<?php $this->getScripts() ?>
+
 </body>
