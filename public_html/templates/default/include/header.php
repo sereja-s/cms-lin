@@ -2,7 +2,7 @@
 <html lang="ru">
 
 <head>
-	<title>Funiro</title>
+	<title>Специи</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <link rel="stylesheet" href="css/style.min.css"> -->
@@ -20,28 +20,48 @@
 				<div class="header__container _container">
 					<div class="header__body">
 						<div class="header__main">
-							<a href="" class="header__logo">ТМ"АДАЦ"</a>
+							<a href="<?= $this->alias() ?>" class="header__logo"><img src="<?= $this->img($this->set['img']) ?>" alt="<?= $this->set['name'] ?>"></a>
 							<div class="header__menu menu">
 								<nav class="menu__body">
 									<ul data-spollers="768,max" class="menu__list">
-										<li class="menu__item">
-											<a href="" class="menu__link">Продукция</a>
-											<button data-spoller type="button" class="menu__arrow _icon-arrow-down"></button>
-											<ul class="menu__sub-list">
-												<li class="menu__sub-item">
-													<a href="" class="menu__sub-link">Аджика</a>
+
+										<?php if (!empty($this->menu['catalog'])) : ?>
+
+											<li class="menu__item">
+												<a href="<?= $this->alias('catalog') ?>" class="menu__link">Продукция</a>
+												<button data-spoller type="button" class="menu__arrow _icon-arrow-down"></button>
+												<ul class="menu__sub-list">
+
+													<?php foreach ($this->menu['catalog'] as $item) : ?>
+
+														<li class="menu__sub-item">
+															<a href="<?= $this->alias(['catalog' => $Item['alias']]) ?>" class="menu__sub-link"><?= $item['name'] ?></a>
+														</li>
+
+													<?php endforeach; ?>
+													<!-- <li class="menu__sub-item">
+														<a href="" class="menu__sub-link">Смеси специй</a>
+													</li>	-->
+
+												</ul>
+											</li>
+
+										<?php endif; ?>
+
+										<?php if (!empty($this->menu['information'])) : ?>
+
+											<?php foreach ($this->menu['information'] as $item) : ?>
+
+												<li class="menu__item">
+
+													<a href="<?= $this->alias(['information' => $item['alias']]) ?>" class="menu__link"><?= $item['name'] ?></a>
+
 												</li>
-												<li class="menu__sub-item">
-													<a href="" class="menu__sub-link">Смеси специй</a>
-												</li>
-												<li class="menu__sub-item">
-													<a href="" class="menu__sub-link">Натуральные смеси и специи</a>
-												</li>
-												<!-- <li class="menu__sub-item">
-													<a href="" class="menu__sub-link">Product #4</a>
-												</li> -->
-											</ul>
-										</li>
+
+											<?php endforeach; ?>
+
+										<?php endif; ?>
+
 										<!-- <li class="menu__item">
 											<a href="" class="menu__link">Rooms</a>
 											<button data-spoller type="button" class="menu__arrow _icon-arrow-down"></button>
@@ -61,11 +81,11 @@
 											</ul>
 										</li> -->
 										<li class="menu__item">
-											<a href="tel:+79493302709" class="contacts-footer__item _icon-phone">+7 949 330 27 09</a>
+											<a href="tel:<?= preg_replace('/[^\+\d]/', '', $this->set['phone']) ?>" class="contacts-footer__item _icon-phone"><?= $this->set['phone'] ?></a>
 										</li>
 										<li class="menu__item">
-											<a href="" target="_blank" class="contacts-footer__item">
-												linkos.don@yandex.ru</a>
+											<a href="mailto:<?= $this->set['email'] ?>" target="_blank" class="contacts-footer__item">
+												<?= $this->set['email'] ?></a>
 										</li>
 									</ul>
 								</nav>
@@ -76,7 +96,7 @@
 								<button type="button" class="search-form__icon _icon-search"></button>
 								<form action="#" class="search-form__item">
 									<button type="submit" class="search-form__btn _icon-search"></button>
-									<input autocomplete="off" type="text" name="form[]" data-value="Search for minimalist chair" class="search-form__input">
+									<input autocomplete="off" type="text" name="form[]" data-value="Найти" class="search-form__input">
 								</form>
 							</div>
 						</div>

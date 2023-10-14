@@ -63,7 +63,7 @@ class IndexTestController extends BaseUser
 		$a = 1; */
 
 		echo $this->getController();
-		exit;
+		exit; // вернёт index_test
 
 		// Выпуск №119
 		/* $this->init();

@@ -3,13 +3,12 @@
 	<div class="footer__container _container">
 		<div class="footer__body">
 			<div class="footer__main">
-				<a href="" class="footer__logo _footer-title">Funiro.</a>
-				<div class="footer__text">Worldwide furniture store since 2020. We sell over 1000+ branded products on
-					our website</div>
+				<a href="<?= $this->alias() ?>" class="footer__logo _footer-title"><?= $this->set['name'] ?></a>
+				<div class="footer__text"><?= $this->set['short_content'] ?></div>
 				<div class="footer__contacts contacts-footer">
-					<a href="" class="contacts-footer__item _icon-location">Sawojajar Malang, Indonesia</a>
-					<a href="tel:+62894563455" class="contacts-footer__item _icon-phone">+6289 456 3455</a>
-					<a href="" target="_blank" class="contacts-footer__item">www.funiro.com</a>
+					<a href="" class="contacts-footer__item _icon-location"><?= $this->set['address'] ?></a>
+					<a href="tel:<?= preg_replace('/[^\+\d]/', '', $this->set['phone']) ?>" class="contacts-footer__item _icon-phone"><?= $this->set['phone'] ?></a>
+					<a href="mailto:<?= $this->set['email'] ?>" target="_blank" class="contacts-footer__item"><?= $this->set['email'] ?></a>
 				</div>
 			</div>
 			<div data-spollers="768,max" class="footer__menu menu-footer">
@@ -83,3 +82,5 @@
 <?php $this->getScripts() ?>
 
 </body>
+
+</html>

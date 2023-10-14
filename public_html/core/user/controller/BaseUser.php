@@ -51,7 +51,7 @@ abstract class BaseUser extends \core\base\controller\BaseController
 
 	protected function inputData()
 	{
-		// инициализируем стили и скрипты На вход здесь ничего не передаём
+		// инициализируем стили и скрипты На вход в пользовательской части здесь ничего не передаём
 		$this->init();
 
 
@@ -112,8 +112,6 @@ abstract class BaseUser extends \core\base\controller\BaseController
 
 		if (!$this->content) {
 
-			//if(!$this->template) { $this->template = ADMIN_TEMPLATE . 'show'; }
-
 			$this->content = $this->render($this->template, $vars);
 		}
 
@@ -134,24 +132,29 @@ abstract class BaseUser extends \core\base\controller\BaseController
 			// scandir() — возвращает список файлов и каталогов внутри указанного пути
 			$dir = scandir($_SERVER['DOCUMENT_ROOT'] . PATH . UPLOAD_DIR . DEFAULT_IMAGE_DIRECTORY);
 
-			// preg_grep() — возвращает записи массива, соответствующие шаблону ( или регулярному выражению)
-			// в переменную: $imgArr положим то что в названии будет указывать на IndexController далее точка и какое то 
-			// расширение, если такого нет, то будем искать файл с названием: default далее точка и какое то расширение
+
+			// В переменную: $imgArr положим файл, который лежит в $dir и в названии будет указывать на контроллер (например 
+			// для IndexController это default_index или index и т.д.) далее точка и какое то расширение, если такого нет, то 
+			// будем искать файл с названием: default далее точка и какое то расширение
+
+			// Т.е. в папку: userfiies\default_images можно добавить изображение для любого контроллера, которое будет показано 
+			// по умолчанию, если в БД оно отутствует, иначе будет выводиться стандартное (общее) изображение (здесь- default.png)
+			// preg_grep() — возвращает записи массива, соответствующие шаблону (или регулярному выражению)
 			$imgArr = preg_grep('/' . $this->getController() . '\./i', $dir) ?: preg_grep('/default\./i', $dir);
 
 			// если в переменную: $imgArr что то пришло, то в переменную $img сохраним выражение, где 
-			// array_shift()— возвращает массив поданный на вход, исключив первый элемент (все ключи числового массива 
-			// будут изменены, чтобы начать отсчет с нуля) +Выпуск №121
+			// array_shift()— Извлекает первый элемент массива 
+			// Получим полный путь к изображению (+Выпуск №121):
 			$imgArr && $img = DEFAULT_IMAGE_DIRECTORY . '/' . array_shift($imgArr);
 		}
 
-		// Выпуск №121
+		// +Выпуск №121
 		if ($img) {
 
 			// сформируем путь к изображению
 			$path = PATH . UPLOAD_DIR . $img;
 
-			// если в параметрах передали: $tag = false
+			// если в параметрах $tag не передали, то по умолчанию $tag = false
 			if (!$tag) {
 
 				// то вернём путь 
@@ -170,9 +173,9 @@ abstract class BaseUser extends \core\base\controller\BaseController
 	 */
 	protected function alias($alias = '', $queryString = '')
 	{
-
 		$str = '';
 
+		// $queryString может прийти как массив или как строка
 		if ($queryString) {
 
 			if (is_array($queryString)) {
@@ -182,6 +185,7 @@ abstract class BaseUser extends \core\base\controller\BaseController
 					// к переменной: $str конкатенируем символ: знак вопроса (если в строку ничего не пришло) иначе- символ амперсанд
 					$str .= (!$str ? '?' : '&');
 
+					// может прийти в $queryString вложенный массив, т.е. в $item тоже может содержаться массив
 					if (is_array($item)) {
 
 						// к ключу конкатенируем символ квадратных скобок
@@ -199,7 +203,7 @@ abstract class BaseUser extends \core\base\controller\BaseController
 					}
 				}
 
-				// иначе если в переменную: $queryString пришёл не массив
+				// иначе если в переменную: $queryString пришёл не массив, а строка
 			} else {
 
 				// проверим не пришёл ли уже знак вопроса в переменную: $queryString
@@ -213,18 +217,19 @@ abstract class BaseUser extends \core\base\controller\BaseController
 		}
 
 
+		// в переменную $alias тоже может прийти строка или массив
 		if (is_array($alias)) {
 
 			$aliasStr = '';
 
 			foreach ($alias as $key => $item) {
 
-				// если пришёл не числовой ключ и что то пришло в переменную: $item
+				// если пришёл accoциaтивный массив т.е. не числовой ключ и что то пришло в переменную: $item (есть значение)
 				if (!is_numeric($key) && $item) {
 
 					$aliasStr .= $key . '/' . $item . '/';
 
-					// иначе если что то пришло в переменную: $item, но ключ числовой
+					// иначе если что то пришло в переменную: $item, но ключ числовой (Индексированный массив)
 				} elseif ($item) {
 
 					$aliasStr .= $item . '/';

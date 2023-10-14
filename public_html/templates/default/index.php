@@ -24,7 +24,7 @@
 
 						</div>
 						<a href="" data-swiper-parallax-opacity="0" data-swiper-parallax-x="-100%" class="slider-main__content">
-							<div style="flex-wrap: wrap;" class="slider-main__title">С нами удобно,вкусно, и мы всегда рядом!</div>
+							<div style="flex-wrap: wrap;" class="slider-main__title">С нами удобно,вкусно и мы всегда рядом!</div>
 							<div style="flex-wrap: wrap;" class="slider-main__text">Любая форма оплаты, декларации соответствия и сертификаты качества на всю продукцию</div>
 							<!-- <div class="slider-main__price _icon-arrow-link">Rp 17.000.000</div> -->
 						</a>
@@ -100,19 +100,15 @@
 		<div class="products__items">
 			<article data-pid="1" class="products__item item-product">
 				<div class="item-product__labels">
-					<div class="item-product__label item-product__label_new">NEW</div>
+					<div class="item-product__label item-product__label_new">New</div>
 					<div class="item-product__label item-product__label_sale">-30%</div>
 				</div>
 				<div class="item-product__labels--prem">
-
 					<div class="item-product__label--prem">ПРЕМИУМ</div>
-
 				</div>
 
 				<a href="" class="item-product__image _ibg">
-					<picture>
-						<source srcset="<?= PATH . TEMPLATE ?>assets/img/products/01.webp" type="image/webp"><img src="<?= PATH . TEMPLATE ?>assets/img/products/01.jpg" alt="Syltherine">
-					</picture>
+					<img src="<?= PATH . TEMPLATE ?>assets/img/products/01.jpg" alt="Specii">
 				</a>
 				<div class="item-product__body">
 					<div class="item-product__content">
@@ -215,9 +211,7 @@
 					<div class="item-product__label item-product__label_new">New</div>
 				</div>
 				<a href="" class="item-product__image _ibg">
-					<picture>
-						<source srcset="<?= PATH . TEMPLATE ?>assets/img/products/01.webp" type="image/webp"><img src="<?= PATH . TEMPLATE ?>assets/img/products/01.jpg" alt="Syltherine">
-					</picture>
+					<img src="<?= PATH . TEMPLATE ?>assets/img/products/01.jpg" alt="Specii">
 				</a>
 				<div class="item-product__body">
 					<div class="item-product__content">
