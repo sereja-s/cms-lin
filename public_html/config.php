@@ -2,7 +2,7 @@
 
 defined('VG_ACCESS') or die('Access denied');
 
-const SITE_URL = 'http://cms-linkos-don.ru/';
+const SITE_URL = 'http://cms-specii/';
 const PATH = '/';
 
 const HOST = 'localhost';

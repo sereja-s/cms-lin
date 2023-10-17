@@ -40,20 +40,20 @@ class IndexController extends BaseUser
 		$arrHits = [
 
 			'hit' => [
-				'name' => 'Хиты продаж',
-				'icon' => '<svg><use xlink:href="' . PATH . TEMPLATE . 'assets/img/icons.svg#hit"</use></svg>'
+				'name' => 'Премиум',
+				'icon' => ''
 			],
-			'hot' => [
+			/* 'hot' => [
 				'name' => 'Горячие предложения',
 				'icon' => '<svg><use xlink:href="' . PATH . TEMPLATE . 'assets/img/icons.svg#hot"</use></svg>'
-			],
-			'sale' => [
+			], */
+			/* 'sale' => [
 				'name' => 'Распродажа',
-				'icon' => '%'
-			],
+				'icon' => ''
+			], */
 			'new' => [
-				'name' => 'Новинки',
-				'icon' => 'н'
+				'name' => 'Наши новинки',
+				'icon' => ''
 			],
 
 		];
@@ -64,6 +64,8 @@ class IndexController extends BaseUser
 
 			$goods[$type] = $this->model->getGoods([
 				'where' => [$type => 1, 'visible' => 1], // +Выпуск №127
+				'order' => ['datetime'],
+				'order_direction' => ['DESC'],
 				'limit' => 7 // выводим не более 7 товаров у которых включены соответствующие предложения
 			]);
 		}

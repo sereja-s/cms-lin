@@ -13,39 +13,76 @@
 			</div>
 			<div data-spollers="768,max" class="footer__menu menu-footer">
 				<div class="menu-footer__column">
-					<button type="button" data-spoller class="menu-footer__title _footer-title">Menu</button>
-					<ul class="menu-footer__list">
-						<li><a href="" class="menu-footer__link">Products</a></li>
-						<li><a href="" class="menu-footer__link">Rooms</a></li>
-						<li><a href="" class="menu-footer__link">Inspirations</a></li>
-						<li><a href="" class="menu-footer__link">About Us</a></li>
-						<li><a href="" class="menu-footer__link">Terms & Policy</a></li>
-					</ul>
+
+					<?php if (!empty($this->menu['catalog'])) : ?>
+
+						<button type="button" data-spoller class="menu-footer__title _footer-title">Продукция</button>
+						<ul class="menu-footer__list">
+
+
+
+							<?php foreach ($this->menu['catalog'] as $item) : ?>
+
+								<li><a href="<?= $this->alias(['catalog' => $item['alias']]) ?>" class="menu-footer__link"><?= $item['name'] ?></a></li>
+
+							<?php endforeach; ?>
+
+							<!-- <li><a href="" class="menu-footer__link">Rooms</a></li> -->
+
+						</ul>
+
+					<?php endif; ?>
+
 				</div>
 				<div class="menu-footer__column">
-					<button type="button" data-spoller class="menu-footer__title _footer-title">Account</button>
-					<ul class="menu-footer__list">
-						<li><a href="" class="menu-footer__link">My Account</a></li>
-						<li><a href="" class="menu-footer__link">Checkout</a></li>
-						<li><a href="" class="menu-footer__link">My Cart</a></li>
-						<li><a href="" class="menu-footer__link">My catalog</a></li>
-					</ul>
+
+					<?php if (!empty($this->menu['information-bottom'])) : ?>
+
+						<button type="button" data-spoller class="menu-footer__title _footer-title">Информация</button>
+						<ul class="menu-footer__list">
+
+							<?php foreach ($this->menu['information-bottom'] as $item) : ?>
+
+								<li><a href="<?= $this->alias(['information' => $item['alias']]) ?>" class="menu-footer__link"><?= $item['name'] ?></a></li>
+
+							<?php endforeach; ?>
+
+							<!-- <li><a href="" class="menu-footer__link">Checkout</a></li> -->
+
+						</ul>
+
+					<?php endif; ?>
+
 				</div>
 				<div class="menu-footer__column">
-					<button type="button" data-spoller class="menu-footer__title _footer-title">Stay Connected</button>
-					<ul class="menu-footer__list">
-						<li><a href="" class="menu-footer__link">Facebook</a></li>
-						<li><a href="" class="menu-footer__link">Instagram</a></li>
-						<li><a href="" class="menu-footer__link">Twitter</a></li>
-					</ul>
+
+					<?php if (!empty($this->socials)) : ?>
+
+						<button type="button" data-spoller class="menu-footer__title _footer-title">Соц.сети</button>
+						<ul class="menu-footer__list">
+
+							<?php foreach ($this->socials as $item) : ?>
+
+								<li><a href="<?= $this->alias($item['external_alias']) ?>" class="menu-footer__link"><?= $item['name'] ?></a></li>
+
+							<?php endforeach; ?>
+
+							<!-- <li><a href="" class="menu-footer__link">Instagram</a></li> -->
+
+						</ul>
+
+					<?php endif; ?>
+
 				</div>
 			</div>
 			<div class="footer__subscribe subscribe">
-				<div class="subscribe__title _footer-title">Stay Updated</div>
+
+				<a href="<?= $this->alias() ?>" class="header__logo"><img src="<?= $this->img($this->set['img']) ?>" alt="<?= $this->set['name'] ?>"></a>
+				<!-- <div class="subscribe__title _footer-title">Stay Updated</div>
 				<form data-message="subscribe" data-test action="#" class="subscribe__form">
 					<input autocomplete="off" type="text" name="form[]" data-error="Ошибка" data-value="Enter your email" class="subscribe__input _req _email">
 					<button type="submit" class="subscribe__button _icon-send"></button>
-				</form>
+				</form> -->
 			</div>
 		</div>
 	</div>

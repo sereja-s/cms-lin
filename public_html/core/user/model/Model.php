@@ -63,6 +63,7 @@ class Model extends \core\base\model\BaseModel
 		// все дальнейшие действия выполняем если пришли товары
 		if ($goods) {
 
+			// (+Выпуск №141)
 			if (!empty($this->showColumns('goods')['discount'])) {
 
 				foreach ($goods as $key => $item) {
@@ -105,8 +106,10 @@ class Model extends \core\base\model\BaseModel
 
 				foreach ($this->showColumns('filters') as $name => $item) {
 
+					// нам надо забирать названия полей, которые являются массивами (автоматически формирующееся поле: id_row забирать не надо)
 					if (!empty($item) && is_array($item)) {
 
+						// в поля родительских фильтров собираем названия (с добавлением к каждому псевдонима)
 						$parentFiltersFields[] = $name . ' as f_' . $name; // что бы отличать родителя от значения
 					}
 				}
@@ -114,11 +117,13 @@ class Model extends \core\base\model\BaseModel
 
 				if (!empty($this->showColumns('filters')['visible'])) {
 
+					// массив условий для фиьтров
 					$filtersWhere['visible'] = 1;
 				}
 
 				if (!empty($this->showColumns('filters')['menu_position'])) {
 
+					// массив сортировки для фильтров
 					$filtersOrder[] = 'menu_position';
 				}
 
@@ -137,14 +142,15 @@ class Model extends \core\base\model\BaseModel
 						],
 						// нам нужен джоин (связь) с таблицей связей
 						'goods_filters' => [
-							// применим расширенный режим (с указанием ключа: 'on') т.к. смотрим не на предыдущую таблицу (здесь- filters f_name), а на другую
+							// применим расширенный режим (с указанием ключа: 'on') т.к. смотрим не на предыдущую таблицу (здесь- filters f_name), а на другую (здесь- filters)
 							'on' => [
 								'table' => 'filters',
-								// поле из предыдущей таблицы (id) должно смотреть на поле текущей (filters_id)
+								// поле из предыдущей таблицы (id из filters) должно смотреть на поле текущей (filters_id из goods_filters)
 								'fields' => ['id', 'filters_id']
 							],
 							'where' => [
-								// строим подзапрос (вложенный запрос), так блок с фильтрами нужно получить для всех товаров в разделе
+								// строим подзапрос (вложенный запрос), так блок с фильтрами нужно получить для всех товаров в 
+								// разделе (т.е. поучим все id товаров в разделе, согласно условию(если есть))
 								'goods_id' => $this->get('goods', [
 									'fields' => [$this->showColumns('goods')['id_row']],
 									'where' => $set['where'] ?? null,
@@ -262,6 +268,9 @@ class Model extends \core\base\model\BaseModel
 			}
 		}
 
+		// Получаем массив, в котором ключи это id товаров. В каждом вся информация о товаре и дополнительно ячейка: filters
+		// c массивом, в котором ключи это id фильтров, которые применены к данному товару. В каждом вся информация о фильтре 
+		// и дополнительно ячейка: values c массивом, в котором ключи это id значений конкретного фильтра для данного товара
 		return $goods ?? null;
 	}
 

@@ -91,6 +91,10 @@ abstract class BaseUser extends \core\base\controller\BaseController
 			'where' => ['visible' => 1, 'show_top_menu' => 1],
 			'order' => ['menu_position']
 		]);
+		$this->menu['information-bottom'] = $this->model->get('information', [
+			'where' => ['visible' => 1],
+			'order' => ['menu_position']
+		]);
 
 		// получим в св-во: $this->socials, то что хранится в соответствующей таблице БД
 		$this->socials = $this->model->get('socials', [

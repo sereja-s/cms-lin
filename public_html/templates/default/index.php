@@ -2,11 +2,11 @@
 	<div class="main-slider__container _container">
 		<div class="main-slider__body">
 			<div class="main-slider__content content-main">
-				<h1 class="content-main__title">Приправы, пряности и специи ТМ"АДАЦ"</h1>
+				<h1 class="content-main__title"><?= $this->set['keywords'] ?></h1>
 				<div class="content-main__text">
-					Предлагаем Вашему вниманию настоящую Абхазскую Аджику, лучшие специи и пряности, высококачественные приправы , производимые в Донецке!
+					<?= $this->set['description'] ?>
 				</div>
-				<a href="" data-da=".main-slider__body,991.98" class="content-main__button btn">Весь ассортимент</a>
+				<a href="<?= $this->alias('catalog') ?>" data-da=".main-slider__body,991.98" class="content-main__button btn">Весь ассортимент</a>
 			</div>
 			<div class="main-slider__slider slider-main">
 				<div class="slider-main__controls controls-slider-main">
@@ -17,19 +17,25 @@
 					</div>
 				</div>
 				<div class="slider-main__body _swiper">
-					<div class="slider-main__slide">
-						<div class="slider-main__image _ibg">
 
-							<img src="<?= PATH . TEMPLATE ?>assets/img/main-slider/специи-1-min.jpg" alt="Image">
+					<?php foreach ($sales as $item) : ?>
 
+						<div class="slider-main__slide">
+							<div class="slider-main__image _ibg">
+
+								<img src="<?= $this->img($item['img']) ?>" alt="<?= $item['name'] ?>">
+
+							</div>
+							<a href="#" data-swiper-parallax-opacity="0" data-swiper-parallax-x="-100%" class="slider-main__content">
+								<div class="slider-main__title"><?= $item['name'] ?></div>
+								<div style="font-weight:600" class="slider-main__text"><?= $item['sub_title'] ?></div>
+								<!-- <div class="slider-main__price _icon-arrow-link">Rp 17.000.000</div> -->
+							</a>
 						</div>
-						<a href="" data-swiper-parallax-opacity="0" data-swiper-parallax-x="-100%" class="slider-main__content">
-							<div style="flex-wrap: wrap;" class="slider-main__title">С нами удобно,вкусно и мы всегда рядом!</div>
-							<div style="flex-wrap: wrap;" class="slider-main__text">Любая форма оплаты, декларации соответствия и сертификаты качества на всю продукцию</div>
-							<!-- <div class="slider-main__price _icon-arrow-link">Rp 17.000.000</div> -->
-						</a>
-					</div>
-					<div class="slider-main__slide">
+
+					<?php endforeach; ?>
+
+					<!-- <div class="slider-main__slide">
 						<div class="slider-main__image _ibg">
 							<img src="<?= PATH . TEMPLATE ?>assets/img/main-slider/приправы-на-тарелке-min.jpg" alt="Image">
 						</div>
@@ -38,282 +44,83 @@
 							<div class="slider-main__text">Luxury big sofa 2-seat</div>
 							<div class="slider-main__price _icon-arrow-link">Rp 17.000.000</div>
 						</a>
-					</div>
-					<div class="slider-main__slide">
-						<div class="slider-main__image _ibg">
-							<img src="<?= PATH . TEMPLATE ?>assets/img/main-slider/приправы-на-столе-min.jpeg" alt="Image">
-						</div>
-						<a href="" data-swiper-parallax-opacity="0" data-swiper-parallax-x="-100%" class="slider-main__content">
-							<div class="slider-main__title">Bohauss</div>
-							<div class="slider-main__text">Luxury big sofa 2-seat</div>
-							<div class="slider-main__price _icon-arrow-link">Rp 17.000.000</div>
-						</a>
-					</div>
+					</div> -->
+
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
-<section class="page__advantages advantages">
-	<div class="advantages__container _container">
-		<div class="advantages__item">
-			<div class="advantages__icon">
-				<picture>
-					<source srcset="<?= PATH . TEMPLATE ?>assets/img/advantages/01.svg" type="image/webp"><img src="<?= PATH . TEMPLATE ?>assets/img/advantages/01.svg" alt="High Quality">
-				</picture>
-			</div>
-			<h3 class="advantages__title">Лучшие условия</h3>
-			<div class="advantages__text">для оптовых покупателей и сегмента HORECA</div>
-		</div>
-		<div class="advantages__item">
-			<div class="advantages__icon">
-				<picture>
-					<source srcset="<?= PATH . TEMPLATE ?>assets/img/advantages/02.svg" type="image/webp"><img src="<?= PATH . TEMPLATE ?>assets/img/advantages/02.svg" alt="Warrany Protection">
-				</picture>
-			</div>
-			<h3 class="advantages__title">Гарантия качества</h3>
-			<div class="advantages__text">декларации соответствия и сертификаты качества на всю продукцию</div>
-		</div>
-		<div class="advantages__item">
-			<div class="advantages__icon">
-				<picture>
-					<source srcset="<?= PATH . TEMPLATE ?>assets/img/advantages/03.svg" type="image/webp"><img src="<?= PATH . TEMPLATE ?>assets/img/advantages/03.svg" alt="Free Shipping">
-				</picture>
-			</div>
-			<h3 class="advantages__title">Любая форма оплаты</h3>
-			<div class="advantages__text">наличный, безналичный расчёт</div>
-		</div>
-		<div class="advantages__item">
-			<div class="advantages__icon">
-				<picture>
-					<source srcset="<?= PATH . TEMPLATE ?>/assets/img/advantages/04.svg" type="image/webp"><img src="<?= PATH . TEMPLATE ?>assets/img/advantages/04.svg" alt="24 / 7 Support">
-				</picture>
-			</div>
-			<h3 class="advantages__title">Всегда на связи</h3>
-			<div class="advantages__text">мы рядом с вами</div>
-		</div>
-	</div>
-</section>
-<section class="page__products products">
-	<div class="products__container _container">
-		<h2 class="products__title _title">Наши новинки</h2>
-		<div class="products__items">
-			<article data-pid="1" class="products__item item-product">
-				<div class="item-product__labels">
-					<div class="item-product__label item-product__label_new">New</div>
-					<div class="item-product__label item-product__label_sale">-30%</div>
-				</div>
-				<div class="item-product__labels--prem">
-					<div class="item-product__label--prem">ПРЕМИУМ</div>
+
+<?php if (!empty($advantages)) : ?>
+
+	<section class="page__advantages advantages">
+		<div class="advantages__container _container">
+
+			<?php foreach ($advantages as $item) : ?>
+
+				<div class="advantages__item">
+					<div class="advantages__icon">
+
+						<img src="<?= $this->img($item['img']) ?>" alt="<?= $item['name'] ?>">
+
+					</div>
+					<h3 class="advantages__title"><?= $item['name'] ?></h3>
+					<div class="advantages__text"><?= $item['short_content'] ?></div>
 				</div>
 
-				<a href="" class="item-product__image _ibg">
-					<img src="<?= PATH . TEMPLATE ?>assets/img/products/01.jpg" alt="Specii">
-				</a>
-				<div class="item-product__body">
-					<div class="item-product__content">
-						<h3 class="item-product__title">Syltherine</h3>
-						<div class="item-product__text">Stylish cafe chair</div>
-					</div>
-					<div class="item-product__prices">
-						<div class="item-product__price">Rp 2.500.000</div>
-						<div class="item-product__price item-product__price_old">Rp 3.500.000</div>
-					</div>
-					<!-- <div class="item-product__actions actions-product">
-						<div class="actions-product__body">
-							<a href="" class="actions-product__button btn btn_white">Add to cart</a>
-							<a href="" class="actions-product__link _icon-share">Share</a>
-							<a href="" class="actions-product__link _icon-favorite">Like</a>
-						</div>
-					</div> -->
-				</div>
-			</article>
-			<article data-pid="2" class="products__item item-product">
-				<div class="item-product__labels">
-					<div class="item-product__label item-product__label_new">New</div>
-				</div>
-				<a href="" class="item-product__image _ibg">
+			<?php endforeach; ?>
+
+			<!-- <div class="advantages__item">
+				<div class="advantages__icon">
 					<picture>
-						<source srcset="<?= PATH . TEMPLATE ?>assets/img/products/02.webp" type="image/webp"><img src="<?= PATH . TEMPLATE ?>assets/img/products/02.jpg" alt="Leviosa">
+						<source srcset="<?= PATH . TEMPLATE ?>assets/img/advantages/02.svg" type="image/webp"><img src="<?= PATH . TEMPLATE ?>assets/img/advantages/02.svg" alt="Warrany Protection">
 					</picture>
-				</a>
-				<div class="item-product__body">
-					<div class="item-product__content">
-						<h3 class="item-product__title">Leviosa</h3>
-						<div class="item-product__text">Stylish cafe chair</div>
-					</div>
-					<div class="item-product__prices">
-						<div class="item-product__price">Rp 2.500.000</div>
-					</div>
-					<!-- <div class="item-product__actions actions-product">
-						<div class="actions-product__body">
-							<a href="" class="actions-product__button btn btn_white">Add to cart</a>
-							<a href="" class="actions-product__link _icon-share">Share</a>
-							<a href="" class="actions-product__link _icon-favorite">Like</a>
-						</div>
-					</div> -->
 				</div>
-			</article>
-			<article data-pid="3" class="products__item item-product">
-				<div class="item-product__labels">
-					<div class="item-product__label item-product__label_sale">-50%</div>
-				</div>
-				<a href="" class="item-product__image _ibg">
-					<picture>
-						<source srcset="<?= PATH . TEMPLATE ?>assets/img/products/03.webp" type="image/webp"><img src="<?= PATH . TEMPLATE ?>assets/img/products/03.jpg" alt="Lolito">
-					</picture>
-				</a>
-				<div class="item-product__body">
-					<div class="item-product__content">
-						<h3 class="item-product__title">Lolito</h3>
-						<div class="item-product__text">Luxury big sofa</div>
-					</div>
-					<div class="item-product__prices">
-						<div class="item-product__price">Rp 2.500.000</div>
-						<div class="item-product__price item-product__price_old">Rp 3.500.000</div>
-					</div>
-					<!-- <div class="item-product__actions actions-product">
-						<div class="actions-product__body">
-							<a href="" class="actions-product__button btn btn_white">Add to cart</a>
-							<a href="" class="actions-product__link _icon-share">Share</a>
-							<a href="" class="actions-product__link _icon-favorite">Like</a>
-						</div>
-					</div> -->
-				</div>
-			</article>
-			<article data-pid="4" class="products__item item-product">
-				<div class="item-product__labels"></div>
-				<a href="" class="item-product__image _ibg">
-					<picture>
-						<source srcset="<?= PATH . TEMPLATE ?>assets/img/products/04.webp" type="image/webp"><img src="<?= PATH . TEMPLATE ?>assets/img/products/04.jpg" alt="Lolito">
-					</picture>
-				</a>
-				<div class="item-product__body">
-					<div class="item-product__content">
-						<h3 class="item-product__title">Respira</h3>
-						<div class="item-product__text">Minimalist fan</div>
-					</div>
-					<div class="item-product__prices">
-						<div class="item-product__price">Rp 500.000</div>
-					</div>
-					<!-- <div class="item-product__actions actions-product">
-						<div class="actions-product__body">
-							<a href="" class="actions-product__button btn btn_white">Add to cart</a>
-							<a href="" class="actions-product__link _icon-share">Share</a>
-							<a href="" class="actions-product__link _icon-favorite">Like</a>
-						</div>
-					</div> -->
-				</div>
-			</article>
-			<article data-pid="1" class="products__item item-product">
-				<div class="item-product__labels">
-					<div class="item-product__label item-product__label_sale">-30%</div>
-					<div class="item-product__label item-product__label_new">New</div>
-				</div>
-				<a href="" class="item-product__image _ibg">
-					<img src="<?= PATH . TEMPLATE ?>assets/img/products/01.jpg" alt="Specii">
-				</a>
-				<div class="item-product__body">
-					<div class="item-product__content">
-						<h3 class="item-product__title">Syltherine</h3>
-						<div class="item-product__text">Stylish cafe chair</div>
-					</div>
-					<div class="item-product__prices">
-						<div class="item-product__price">Rp 2.500.000</div>
-						<div class="item-product__price item-product__price_old">Rp 3.500.000</div>
-					</div>
-					<!-- <div class="item-product__actions actions-product">
-						<div class="actions-product__body">
-							<a href="" class="actions-product__button btn btn_white">Add to cart</a>
-							<a href="" class="actions-product__link _icon-share">Share</a>
-							<a href="" class="actions-product__link _icon-favorite">Like</a>
-						</div>
-					</div> -->
-				</div>
-			</article>
-			<article data-pid="2" class="products__item item-product">
-				<div class="item-product__labels">
-					<div class="item-product__label item-product__label_new">New</div>
-				</div>
-				<a href="" class="item-product__image _ibg">
-					<picture>
-						<source srcset="<?= PATH . TEMPLATE ?>assets/img/products/02.webp" type="image/webp"><img src="<?= PATH . TEMPLATE ?>assets/img/products/02.jpg" alt="Leviosa">
-					</picture>
-				</a>
-				<div class="item-product__body">
-					<div class="item-product__content">
-						<h3 class="item-product__title">Leviosa</h3>
-						<div class="item-product__text">Stylish cafe chair</div>
-					</div>
-					<div class="item-product__prices">
-						<div class="item-product__price">Rp 2.500.000</div>
-					</div>
-					<!-- <div class="item-product__actions actions-product">
-						<div class="actions-product__body">
-							<a href="" class="actions-product__button btn btn_white">Add to cart</a>
-							<a href="" class="actions-product__link _icon-share">Share</a>
-							<a href="" class="actions-product__link _icon-favorite">Like</a>
-						</div>
-					</div> -->
-				</div>
-			</article>
-			<article data-pid="3" class="products__item item-product">
-				<div class="item-product__labels">
-					<div class="item-product__label item-product__label_sale">-50%</div>
-				</div>
-				<a href="" class="item-product__image _ibg">
-					<picture>
-						<source srcset="<?= PATH . TEMPLATE ?>assets/img/products/03.webp" type="image/webp"><img src="<?= PATH . TEMPLATE ?>assets/img/products/03.jpg" alt="Lolito">
-					</picture>
-				</a>
-				<div class="item-product__body">
-					<div class="item-product__content">
-						<h3 class="item-product__title">Lolito</h3>
-						<div class="item-product__text">Luxury big sofa</div>
-					</div>
-					<div class="item-product__prices">
-						<div class="item-product__price">Rp 2.500.000</div>
-						<div class="item-product__price item-product__price_old">Rp 3.500.000</div>
-					</div>
-					<!-- <div class="item-product__actions actions-product">
-						<div class="actions-product__body">
-							<a href="" class="actions-product__button btn btn_white">Add to cart</a>
-							<a href="" class="actions-product__link _icon-share">Share</a>
-							<a href="" class="actions-product__link _icon-favorite">Like</a>
-						</div>
-					</div> -->
-				</div>
-			</article>
-			<!-- <article data-pid="4" class="products__item item-product">
-				<div class="item-product__labels"></div>
-				<a href="" class="item-product__image _ibg">
-					<picture>
-						<source srcset="<?= PATH . TEMPLATE ?>assets/img/products/04.webp" type="image/webp"><img src="<?= PATH . TEMPLATE ?>assets/img/products/04.jpg" alt="Lolito">
-					</picture>
-				</a>
-				<div class="item-product__body">
-					<div class="item-product__content">
-						<h3 class="item-product__title">Respira</h3>
-						<div class="item-product__text">Minimalist fan</div>
-					</div>
-					<div class="item-product__prices">
-						<div class="item-product__price">Rp 500.000</div>
-					</div>
-					<div class="item-product__actions actions-product">
-						<div class="actions-product__body">
-							<a href="" class="actions-product__button btn btn_white">Add to cart</a>
-							<a href="" class="actions-product__link _icon-share">Share</a>
-							<a href="" class="actions-product__link _icon-favorite">Like</a>
-						</div>
-					</div>
-				</div>
-			</article> -->
+				<h3 class="advantages__title">Гарантия качества</h3>
+				<div class="advantages__text">декларации соответствия и сертификаты качества на всю продукцию</div>
+			</div> -->
+
 		</div>
-		<div class="products__footer">
-			<a href="" class="products__more btn btn_white">Show More</a>
+	</section>
+
+<?php endif; ?>
+
+<?php if (!empty($goods) && !empty($arrHits)) : ?>
+
+	<section class="page__products products">
+		<div class="products__container _container">
+
+			<?php foreach ($arrHits as $key => $value) : ?>
+
+				<?php if ($key === 'new') : ?>
+
+					<?php if (!empty($goods[$key])) : ?>
+
+						<h2 class="products__title _title"><?= $value['name'] ?></h2>
+						<div class="products__items">
+
+							<?php foreach ($goods[$key] as $item) {
+
+								$this->showGoods($item);
+							} ?>
+
+						</div>
+
+					<?php endif; ?>
+
+				<?php endif; ?>
+
+			<?php endforeach; ?>
+
+			<div class="products__footer">
+				<a href="<?= $this->alias('catalog') ?>" class="products__more btn btn_white">Весь ассортимент</a>
+			</div>
 		</div>
-	</div>
-</section>
+	</section>
+
+<?php endif; ?>
+
 <section class="page__rooms rooms">
 	<div class="rooms__container _container">
 		<div class="rooms__body">

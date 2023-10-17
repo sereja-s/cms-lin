@@ -2,75 +2,46 @@
 
 <?php if (!empty($data)) : ?>
 
-	<!-- Выпуск №129 -->
-	<?php
+	<article class="products__item item-product">
+		<div class="item-product__labels">
 
-	$mainClass = $parameters['mainClass'] ?? 'offers__tabs_card swiper-slide';
+			<?php if (!empty($data['new'])) : ?>
 
-	$classPrefix = $parameters['prefix'] ?? 'offers';
+				<div class="item-product__label item-product__label_new">New</div>
 
-	?>
+			<?php endif; ?>
 
-	<a href="<?= $this->alias(['product' => $data['alias']]) ?>" class="<?= $mainClass ?>" style="color: black; text-decoration: none; font-size: 20px;" data-productContainer>
+			<?php if (!empty($data['discount'])) : ?>
 
-		<div class="<?= $classPrefix ?>__tabs_image">
+				<div class="item-product__label item-product__label_sale">-<?= $data['discount'] ?>%</div>
 
+			<?php endif; ?>
+
+		</div>
+
+		<div class="item-product__labels--prem">
+
+			<?php if (!empty($data['hit'])) : ?>
+
+				<div class="item-product__label--prem">ПРЕМИУМ</div>
+
+			<?php endif; ?>
+
+		</div>
+
+		<a href="#" class="item-product__image _ibg">
 			<img src="<?= $this->img($data['img']) ?>" alt="<?= $data['name'] ?>">
-
+		</a>
+		<div class="item-product__body">
+			<div class="item-product__content">
+				<h3 class="item-product__title"><?= $data['name'] ?></h3>
+				<div class="item-product__text"><?= $data['short_content'] ?></div>
+			</div>
+			<!-- <div class="item-product__prices">
+				<div class="item-product__price">Rp 2.500.000</div>
+				<div class="item-product__price item-product__price_old">Rp 3.500.000</div>
+			</div> -->
 		</div>
-		<div class="<?= $classPrefix ?>__tabs_description">
-
-			<div class="<?= $classPrefix ?>__tabs_name">
-
-				<h3><?= $data['name'] ?><br><?= $data['short_content'] ?></h3>
-
-
-
-				<?php if (!empty($data['filters'])) : ?>
-
-					<div class="card-main-info__table">
-
-						<?php foreach ($data['filters'] as $item) : ?>
-
-							<div class="card-main-info__table-row">
-								<div class="card-main-info__table-item">
-
-									<!-- названия фильтра -->
-									<?= $item['name'] ?>
-
-								</div>
-								<div class="card-main-info__table-item">
-
-									<!-- перечислим все названия элементов(значений) фильтра, которые есть у товара -->
-									<?= implode(', ', array_column($item['values'], 'name')) ?>
-
-								</div>
-							</div>
-						<?php endforeach; ?>
-
-					</div>
-
-				<?php endif; ?>
-
-			</div>
-			<div class="<?= $classPrefix ?>__tabs_price">
-				Цена: <?= !empty($data['old_price']) ? '<span class="offers_old-price">' . $data['old_price'] . ' руб.</span>' : '' ?>
-				<span class="offers_new-price"><?= $data['price'] ?> руб.</span>
-			</div>
-		</div>
-		<button class="<?= $classPrefix ?>__btn" data-addToCart="<?= $data['id'] ?>">купить</button>
-
-		<?php if (!empty($parameters['icon'])) : ?>
-
-			<div class="icon-offer">
-
-				<!-- вывод иконки на карточке товара (соответствующей предложению) -->
-				<?= $parameters['icon'] ?>
-
-			</div>
-
-		<?php endif; ?>
-
-	</a>
+	</article>
 
 <?php endif; ?>
