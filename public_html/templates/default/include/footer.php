@@ -11,7 +11,7 @@
 					<a href="mailto:<?= $this->set['email'] ?>" target="_blank" class="contacts-footer__item"><?= $this->set['email'] ?></a>
 				</div>
 			</div>
-			<div data-spollers="768,max" class="footer__menu menu-footer">
+			<div data-spollers="767,max" class="footer__menu menu-footer">
 				<div class="menu-footer__column">
 
 					<?php if (!empty($this->menu['catalog'])) : ?>

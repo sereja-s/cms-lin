@@ -35,7 +35,7 @@
 													<?php foreach ($this->menu['catalog'] as $item) : ?>
 
 														<li class="menu__sub-item">
-															<a href="<?= $this->alias(['catalog' => $Item['alias']]) ?>" class="menu__sub-link"><?= $item['name'] ?></a>
+															<a href="<?= $this->alias(['catalog' => $item['alias']]) ?>" class="menu__sub-link"><?= $item['name'] ?></a>
 														</li>
 
 													<?php endforeach; ?>

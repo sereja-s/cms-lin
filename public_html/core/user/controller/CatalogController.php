@@ -24,7 +24,7 @@ class CatalogController extends BaseUser
 
 		// +Выпуск №134
 		// количество товаров для отображения на странице каталога
-		$quantities = [3, 6, 12];
+		$quantities = [4, 8, 12, 14];
 
 		// Сформируем название для страницы каталог, взависимости от того в какой категории находимся
 		$data = [];
@@ -50,7 +50,7 @@ class CatalogController extends BaseUser
 
 		if ($data) {
 
-			// Выпуск №144
+			// +Выпуск №144
 			$where['parent_id'] = $data['id'];
 		} else {
 
@@ -61,6 +61,7 @@ class CatalogController extends BaseUser
 		$catalogFilters = $catalogPrices = $orderDb = null;
 
 		// Выпуск №131
+		// здесь формируем сортировку для пользовательского шаблона
 		$order = $this->createCatalogOrder($orderDb);
 
 		// Выпуск №132
@@ -93,10 +94,10 @@ class CatalogController extends BaseUser
 
 	/** 
 	 * Метод сортировки каталога товаров (В каталоге реализуем- сортировать по:) (Выпуск №131)
+	 * (также формирует сортировку для БД, поэтому на вход принимает по ссылке переменную для сортировки в БД) 
 	 */
 	protected function createCatalogOrder(&$orderDb)
 	{
-
 		$order = [
 
 			'цене' => 'price_asc',
@@ -111,6 +112,7 @@ class CatalogController extends BaseUser
 		// если в сортировщик что то пришло
 		if (!empty($_GET['order'])) {
 
+			// preg_split — Разбивает строку по регулярному выражению
 			$orderArr = preg_split('/_+/', $_GET['order'], 0, PREG_SPLIT_NO_EMPTY);
 
 			if (!empty($this->model->showColumns('goods')[$orderArr[0]])) {
@@ -122,6 +124,7 @@ class CatalogController extends BaseUser
 				// здесь надо понять какая сортировка сейчас выбрана пользователем
 				foreach ($order as $key => $item) {
 
+					// strpos — Ищет позицию первого вхождения подстроки needle в строку haystack.
 					if (strpos($item, $orderDb['order']) === 0) {
 
 						$direction = $orderDb['order_direction'] === 'asc' ? 'desc' : 'asc';
@@ -137,15 +140,15 @@ class CatalogController extends BaseUser
 		return $order;
 	}
 
-
 	/** 
 	 * Метод фильтрации каталога (Выпуск №132)
 	 */
 	protected function checkFilters(&$where)
 	{
-
+		// переменная при помощи которой будем модифицировать $where
 		$dbWhere = [];
 
+		// массив, который будем возвращать из этого метода (готовим для БД)
 		$dbOperand = [];
 
 		if (isset($_GET['min_price'])) {
@@ -167,7 +170,7 @@ class CatalogController extends BaseUser
 		// +Выпуск №133 Пользовательская часть | система перекрестных фильтров
 		if (!empty($_GET['filters']) && is_array($_GET['filters'])) {
 
-
+			// получим подзапрос в котором id значений разных фильтров выбранных пользователем, сгруппированы в перекрёстном виде
 			$subFiltersQuery = $this->setFilters();
 
 			if ($subFiltersQuery) {
@@ -199,7 +202,6 @@ class CatalogController extends BaseUser
 	 */
 	protected function setFilters()
 	{
-
 		foreach ($_GET['filters'] as $key => $item) {
 
 			$_GET['filters'][$key] = $this->clearNum($item);
@@ -233,14 +235,12 @@ class CatalogController extends BaseUser
 					'on' => ['id', 'parent_id']
 				]
 			],
-
 			'join_structure' => true
 			//'return_query' => true
-
 		]);
 
-		// По условию соберём массив массивов (реализуем систему перекрестных фильтров): 
 
+		// По условию соберём массив массивов (реализуем систему перекрестных фильтров): 
 		if ($res) {
 
 			$arr = [];
@@ -291,10 +291,10 @@ class CatalogController extends BaseUser
 	 */
 	protected function crossDiffArr($arr, $counter = 0)
 	{
-		// если пришёл в массиве только один элемент (массив)
+		// если в массиве массивов пришёл только один элемент(массив)
 		if (count($arr) === 1) {
 
-			// разделим этот массив, по-элементно и вернём эти элементы
+			// разделим этот массив, по-элементно и вернём эти элементы в отдельных массивах каждый
 			return array_chunk(array_shift($arr), 1);
 		}
 

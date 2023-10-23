@@ -159,7 +159,6 @@ class Model extends \core\base\model\BaseModel
 									'return_query' => true
 								])
 							],
-
 							'operand' => ['IN'],
 						]
 					],

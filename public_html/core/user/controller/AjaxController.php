@@ -33,11 +33,11 @@ class AjaxController extends BaseUser
 					break;
 
 					// Выпуск №139 | Пользовательская часть | Добавление в корзину | часть 1
-				case 'add_to_cart';
+					/* case 'add_to_cart';
 
 					return $this->_addToCart();
 
-					break;
+					break; */
 
 					// поиск по каталогу
 				case 'search':

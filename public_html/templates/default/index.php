@@ -114,7 +114,7 @@
 			<?php endforeach; ?>
 
 			<div class="products__footer">
-				<a href="<?= $this->alias('catalog') ?>" class="products__more btn btn_white">Весь ассортимент</a>
+				<a href="<?= $this->alias('catalog') ?>" class="products__more-1 btn btn_white">Весь ассортимент</a>
 			</div>
 		</div>
 	</section>
