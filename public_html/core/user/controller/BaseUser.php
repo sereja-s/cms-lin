@@ -323,7 +323,6 @@ abstract class BaseUser extends \core\base\controller\BaseController
 	 */
 	protected function pagination($pages)
 	{
-
 		// найдём параметр: page в адресной строке
 		$str = $_SERVER['REQUEST_URI'];
 
@@ -358,29 +357,34 @@ abstract class BaseUser extends \core\base\controller\BaseController
 		$str .= 'page=';
 
 
-
 		$firstPageStr = !empty($pages['first']) ? ($pages['first'] === 1 ? $basePageStr : $str . $pages['first']) : '';
 
 		$backPageStr = !empty($pages['back']) ? ($pages['back'] === 1 ? $basePageStr : $str . $pages['back']) : '';
 
-		//$a = 1;
+		$path = PATH . TEMPLATE;
+
+
+		// формируем вывод всех ссылок постраничной навигации:
 
 		if (!empty($pages['first'])) {
 
 			echo <<<HEREDOC
-			<a href="$firstPageStr" class="catalog-section-pagination__item">
-									<< </a>
+			
+			<a href="$firstPageStr" class="pagination__btn pagination__btn--prev">
+											<svg class="svg-sprite-icon icon-arrow pagination__icon">
+												<use xlink:href="{$path}assets/img/svg/symbol/sprite.svg#arrow"></use>
+											</svg>
+			</a>
+
 			HEREDOC;
 		}
 
+		// выводим открывающий тег списка с ссылками на страницы
+		echo <<<HEREDOC
 
-		if (!empty($pages['back'])) {
+		<ul class="pagination__list">										
 
-			echo <<<HEREDOC
-			<a href="$backPageStr" class="catalog-section-pagination__item">
-									< </a>
-			HEREDOC;
-		}
+HEREDOC;
 
 
 		if (!empty($pages['previous'])) {
@@ -390,22 +394,18 @@ abstract class BaseUser extends \core\base\controller\BaseController
 				$href = $item === 1 ? $basePageStr : $str . $item;
 
 				echo <<<HEREDOC
-				<a href="$href" class="catalog-section-pagination__item">
-									$item
-								</a>
-				HEREDOC;
+				
+<li class="pagination__item"><a class="pagination__link" href="$href">$item</a></li>
+HEREDOC;
 			}
 		}
-
 
 		if (!empty($pages['current'])) {
 
 			echo <<<HEREDOC
-			<a href="" class="catalog-section-pagination__item pagination-current">
-									{$pages['current']} </a>
-			HEREDOC;
+	<li class="pagination__item pagination__item--active"><a class="pagination__link" href="#">{$pages['current']}</a></li>
+HEREDOC;
 		}
-
 
 		if (!empty($pages['next'])) {
 
@@ -414,32 +414,32 @@ abstract class BaseUser extends \core\base\controller\BaseController
 				$href = $str . $item;
 
 				echo <<<HEREDOC
-				<a href="$href" class="catalog-section-pagination__item">
-									$item
-								</a>
-				HEREDOC;
+
+		<li class="pagination__item"><a class="pagination__link" href="$href">$item</a></li>
+
+		
+HEREDOC;
 			}
 		}
 
+		// выводим закрывающий тег списка с ссылками на страницы
+		echo <<<HEREDOC
 
-		if (!empty($pages['forward'])) {
-
-			$href = $str . $pages['forward'];
-
-			echo <<<HEREDOC
-			<a href="$href" class="catalog-section-pagination__item">
-									> </a>
-			HEREDOC;
-		}
+</ul>
+HEREDOC;
 
 		if (!empty($pages['last'])) {
 
 			$href = $str . $pages['last'];
 
 			echo <<<HEREDOC
-			<a href="$href" class="catalog-section-pagination__item">
-									>> </a>
-			HEREDOC;
+
+	<a class="pagination__btn" href="$href">
+									<svg class="svg-sprite-icon icon-arrow pagination__icon">
+										<use xlink:href="{$path}assets/img/svg/symbol/sprite.svg#arrow"></use>
+									</svg>
+	</a>
+HEREDOC;
 		}
 	}
 

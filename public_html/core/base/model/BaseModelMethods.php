@@ -13,7 +13,7 @@ namespace core\base\model;
  */
 abstract class BaseModelMethods
 {
-	//  +Выпуск №135
+	// (+Выпуск №135)
 	/** 
 	 * количество элементов для показа
 	 */
@@ -936,12 +936,10 @@ abstract class BaseModelMethods
 	 */
 	public function getPagination()
 	{
-
 		if (!$this->numberPages || $this->numberPages === 1 || $this->page > $this->numberPages) {
 
 			return false;
 		}
-
 
 		$res = [];
 
@@ -951,7 +949,6 @@ abstract class BaseModelMethods
 
 			$res['back'] = $this->page - 1;
 		}
-
 
 		if ($this->page > $this->linksNumber + 1) {
 
@@ -968,9 +965,7 @@ abstract class BaseModelMethods
 			}
 		}
 
-
 		$res['current'] = $this->page;
-
 
 		if ($this->page + $this->linksNumber < $this->numberPages) {
 
@@ -986,14 +981,12 @@ abstract class BaseModelMethods
 			}
 		}
 
-
 		if ($this->page != $this->numberPages) {
 
 			$res['forward'] = $this->page + 1;
 
 			$res['last'] = $this->numberPages;
 		}
-
 
 		return $res;
 	}
