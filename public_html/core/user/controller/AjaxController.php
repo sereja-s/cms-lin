@@ -39,9 +39,11 @@ class AjaxController extends BaseUser
 
 					break; */
 
-					// поиск по каталогу
+					// поиск по каталогу ( ~ Выпуск №105)
 				case 'search':
+
 					return $this->search();
+
 					break;
 			}
 		}
@@ -50,7 +52,7 @@ class AjaxController extends BaseUser
 	}
 
 	/** 
-	 * Метод работы поиска по каталогу( Выпуск №105)
+	 * Метод работы поиска по каталогу( ~ Выпуск №105)
 	 */
 	protected function search()
 	{
@@ -62,17 +64,17 @@ class AjaxController extends BaseUser
 
 		// вызовем метод модели
 		// здесь 3-ий параметр это кол-во подсказок (ссылок) показываемых при работе с поисковой строкой
-		return $this->model->search($data, $table, 7);
+		return $this->model->search($data, $table, 20);
 	}
 
 	/** 
 	 * метод добавит в корзину (Выпуск №139, 140)
 	 */
-	protected function _addToCart()
+	/* protected function _addToCart()
 	{
 
 		//return $this->ajaxData['qty'];
 
 		return $this->addToCart($this->ajaxData['id'] ?? null, $this->ajaxData['qty'] ?? 1);
-	}
+	} */
 }

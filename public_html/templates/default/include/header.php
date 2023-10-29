@@ -91,15 +91,23 @@
 								</nav>
 							</div>
 						</div>
+
 						<div class="header__search">
-							<div class="search-form">
+							<div class="search-form" id="searchButton">
 								<button type="button" class="search-form__icon _icon-search"></button>
 								<form action="#" class="search-form__item">
-									<button type="submit" class="search-form__btn _icon-search"></button>
-									<input autocomplete="off" type="text" name="form[]" data-value="Найти" class="search-form__input">
+									<button class="search-form__btn _icon-search"></button>
+									<input autocomplete="off" type="text" name="search" placeholder="найти..." class="search-form__input">
+									<input type="hidden" name="search_table" value="goods">
+									<div class="dropdown-content search_res">
+										<!-- <a href="#">Ссылка 1</a>
+										<a href="#">Ссылка 2</a>
+										<a href="#">Ссылка 3</a> -->
+									</div>
 								</form>
 							</div>
 						</div>
+
 						<!-- <div class="header__actions actions-header">
 							<a href="" class="actions-header__item actions-header__item_favorites _icon-favorite"></a>
 							<div class="actions-header__item cart-header">

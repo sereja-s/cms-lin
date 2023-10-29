@@ -295,27 +295,22 @@ class Model extends \core\base\model\BaseModel
 	}
 
 	/** 
-	 * Метод работы с поиском по каталогу товаров
+	 * Метод работы с поиском по каталогу товаров ( ~ Выпуск №105)
 	 * (на вход: 1- получили то что введено в поисковую строку, 2- получили то где ищем (приоритет поиска), 
 	 * 3-ий параметр- кол-во показываемых подсказок (ссылок)) 
 	 */
 	public function search($data, $currentTable = false, $qty = false)
 	{
-
 		$dbTables = $this->showTables();
-
 
 		$data = addslashes($data);
 
-
+		// разберём поисковую строку по запятой или точке (если они есть) и пробелу (один или более раз)
 		$arr = preg_split('/(,|\.)?\s+/', $data, 0, PREG_SPLIT_NO_EMPTY);
-
-
 
 		$searchArr = [];
 
 		$order = [];
-
 
 		for (;;) {
 
@@ -324,17 +319,14 @@ class Model extends \core\base\model\BaseModel
 				break;
 			}
 
-
+			// Строим поисковый массив (по системе уточнений):
+			// разделим строку из переменной: $arr по символу пробела
 			$searchArr[] = implode(' ', $arr);
-
-
+			// удаляем последний элемент
 			unset($arr[count($arr) - 1]);
 		}
 
-
-
 		$correctCurrentTable = false;
-
 
 		//$projectTables = Settings::get('projectTables');
 		$searchProjectTables = Settings::get('searchProjectTables');
@@ -345,32 +337,25 @@ class Model extends \core\base\model\BaseModel
 
 		foreach ($searchProjectTables as $table => $item) {
 
-
 			if (!in_array($table, $dbTables)) {
 				continue;
 			}
 
-
 			$searchRows = [];
-
 
 			$orderRows = ['name'];
 
-
 			$fields = [];
-
 
 			$columns = $this->showColumns($table);
 
-
+			// сохраним поле которое является первичным ключём
 			$fields[] = $columns['id_row'] . ' as id';
 
-
-
+			// +Выпуск №113
 			$fieldName = isset($columns['name']) ? "CASE WHEN {$table}.name <> '' THEN {$table}.name " : '';
 
 			foreach ($columns as $col => $value) {
-
 
 				if ($col !== 'name' && stripos($col, 'name') !== false) {
 
@@ -379,58 +364,45 @@ class Model extends \core\base\model\BaseModel
 						$fieldName = 'CASE ';
 					}
 
-
+					// +Выпуск №113
 					$fieldName .= "WHEN {$table}.$col <> '' THEN {$table}.$col ";
 				}
-
 
 				if (
 					isset($value['Type']) &&
 					(stripos($value['Type'], 'char') !== false ||
 						stripos($value['Type'], 'text') !== false)
 				) {
-
 					$searchRows[] = $col;
 				}
 			}
 
 			if ($fieldName) {
 
-
 				$fields[] = $fieldName . 'END as name';
 			} else {
-
 
 				$fields[] = $columns['id_row'] . ' as name';
 			}
 
-
-
 			$fields[] = "('$table') AS table_name";
-
-
 
 			$res = $this->createWhereOrder($searchRows, $searchArr, $orderRows, $table);
 
-
 			$where = $res['where'];
 
-
 			!$order && $order = $res['order'];
-
-
 
 			if ($table === $currentTable) {
 
 				$correctCurrentTable = true;
 
-
 				$fields[] = "('$currentTable') AS current_table";
 			}
 
-
 			if ($where) {
 
+				// +Выпуск №113
 				if ($table === 'goods') {
 
 					$this->buildUnion($table, [
@@ -454,25 +426,21 @@ class Model extends \core\base\model\BaseModel
 			}
 		}
 
-
-
 		$orderDirection = null;
 
-
 		if ($order) {
-
 
 			$order = ($correctCurrentTable ? 'current_table DESC, ' : '') . '(' . implode('+', $order) . ')';
 
 			$orderDirection = 'DESC';
 		}
 
-
 		$result = $this->getUnion([
 			'order' => $order,
 			'order_direction' => $orderDirection
 		]);
 
+		// +Выпуск №113
 		if ($result) {
 
 			foreach ($result as $index => $item) {
@@ -537,14 +505,12 @@ class Model extends \core\base\model\BaseModel
 							}
 						}
 
-
 						// +Выпуск №113
 						if (isset($columns[$row])) {
 
 							$where .= "{$table}.$row LIKE '%$item%' OR ";
 						}
 					}
-
 
 					// preg_replace() — поиск и замена регулярных выражений
 					// на вход: 1- шаблон (регулярное выражение) для поиска, 2- строка (или массив со строками) для замены

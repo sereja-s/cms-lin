@@ -71,7 +71,6 @@ abstract class BaseModelMethods
 			$alias_table = $arr['alias'];
 		}
 
-
 		// в переменную $fields сохраним пустую строку
 		$fields = '';
 
@@ -133,7 +132,6 @@ abstract class BaseModelMethods
 					// поставим флаг в true (теперь знаем, что первичный ключ добавлен в наш запрос)
 					$id_field = true;
 				}
-
 
 				// делаем проверку что в переменную что то пришло или то что пришло равно: null (+Выпуск №112)
 				if ($field || $field === null) {

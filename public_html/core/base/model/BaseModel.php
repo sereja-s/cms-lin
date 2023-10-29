@@ -489,13 +489,6 @@ abstract class BaseModel extends BaseModelMethods
 		return $this; // возвращаем указатель на контекст (на текущий объект данного класса)
 	}
 
-	// (Выпуск №111)
-	/* public function test()
-	{
-		$a = 1;
-	} */
-
-
 	/** 
 	 * Метод для генерации UNION запросов и их выполнения (Выпуск №112- ORM builder UNION запросов ч.2)
 	 */
@@ -531,8 +524,6 @@ abstract class BaseModel extends BaseModelMethods
 						$count += count($data['fields']);
 
 						$joinFields = $table;
-
-						// иначе если
 					} elseif (!array_key_exists('fields', $data) || (!$joinFields['data'] || $data['fields'] === null)) {
 
 						$columns = $this->showColumns($table);
@@ -550,13 +541,13 @@ abstract class BaseModel extends BaseModelMethods
 					}
 				}
 
-				// иначе если ($item['join'] - пусто)
+				// иначе если $item['join'] - пусто
 			} else {
 
 				$this->union[$key]['no_concat'] = true;
 			}
 
-			// поиск максимального значения: 
+			// Поиск максимального значения: 
 
 			if ($count > $maxCount || ($count === $maxCount && $joinFields)) {
 
